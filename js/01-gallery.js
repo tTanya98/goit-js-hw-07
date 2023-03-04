@@ -8,7 +8,7 @@ galleryEl.insertAdjacentHTML('beforeend', galleryIt);
 function createGalleryItemsMarkup (galleryItems) {
 return galleryItems.map(({ preview, original, description }) => {
     return `<div class="gallery__item">
-    <a class="gallery__link" href="large-image.jpg">
+    <a class="gallery__link" href="${original}">
       <img
         class="gallery__image"
         src="${preview}"
@@ -19,11 +19,18 @@ return galleryItems.map(({ preview, original, description }) => {
   </div>`; }).join('');
 }
 
-// galleryEl.addEventListener('click', event => {
-//     if (event.target.nodeName !== 'IMG') {
-//         return;
-//     }
-// });
+galleryEl.addEventListener('click', event => {
+    event.preventDefault();
+    if (event.target.nodeName !== 'IMG') {
+        return;
+    }
+    
+const modal = basicLightbox.create(
+    `<img class="gallery__image" 
+    src="${event.target.dataset.source}" />`);
+
+modal.show()
+});
 
 
 console.log(galleryItems);
