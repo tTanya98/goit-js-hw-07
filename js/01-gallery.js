@@ -30,7 +30,7 @@ const modal = basicLightbox.create(
     src="${event.target.dataset.source}" />`);
 
 modal.show()
-});
 
+});
 
 console.log(galleryItems);
